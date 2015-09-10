@@ -26,8 +26,17 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func getPercentages() -> [Double] {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        let percentage0 =  defaults.doubleForKey("percentage0") / 100
+        let percentage1 =  defaults.doubleForKey("percentage1") / 100
+        let percentage2 =  defaults.doubleForKey("percentage2") / 100
+        return [percentage0, percentage1, percentage2]
+    }
+    
     @IBAction func onEditingChanged(sender: AnyObject) {
-        let percentages = [0.18, 0.20, 0.22]
+        let percentages:[Double] = getPercentages()
         let billAmount = NSString(string: billField.text!).doubleValue
         let percentage = percentages[tipControl.selectedSegmentIndex]
         let tip = billAmount * percentage
@@ -49,12 +58,22 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        setTipPercentages()
         print("view did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         print("view will disappear")
+    }
+    
+   
+    
+    func setTipPercentages() -> Void {
+        let percentages : [Double] = getPercentages()
+        for percentage in percentages {
+            tipControl.setTitle("\(percentage)", forSegmentAtIndex: percentages.indexOf(percentage)!)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
