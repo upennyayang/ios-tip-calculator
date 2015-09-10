@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ios_tips_calculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,6 +75,19 @@
                                     <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="Rvv-6l-wWD"/>
                                 </connections>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" id="FiW-co-Pa5">
+                                <rect key="frame" x="0.0" y="26" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Tip Calculator" id="dtb-Fv-CZw">
+                                        <barButtonItem key="rightBarButtonItem" title="Settings" id="E5Q-Cp-lSF">
+                                            <connections>
+                                                <segue destination="9PX-LD-JTE" kind="modal" id="0NU-gI-538"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -82,6 +95,7 @@
                             <outletCollection property="gestureRecognizers" destination="fJ4-bs-lVV" appends="YES" id="OMb-cE-ZDI"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="orX-57-eXj"/>
                     <connections>
                         <outlet property="billField" destination="TEi-hb-IAC" id="K1V-PJ-3hQ"/>
                         <outlet property="tipControl" destination="8X0-aV-RNU" id="4DG-Xz-xIa"/>
@@ -96,7 +110,41 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="173" y="352"/>
+            <point key="canvasLocation" x="170" y="408"/>
+        </scene>
+        <!--User View Controller-->
+        <scene sceneID="ihm-cc-4Hh">
+            <objects>
+                <viewController id="9PX-LD-JTE" customClass="UserViewController" customModule="ios_tips_calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rOX-JS-I3z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="bTx-8z-Ly6">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Settings" id="Whp-v4-7zn">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="rfP-Om-vo3">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VuF-aS-sKE">
+                                                <rect key="frame" x="16" y="7" width="71" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="onBackClick:" destination="9PX-LD-JTE" eventType="touchUpInside" id="itH-E5-SlD"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xeh-I5-9ah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="582" y="408"/>
         </scene>
     </scenes>
 </document>
