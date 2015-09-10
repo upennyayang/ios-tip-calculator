@@ -62,6 +62,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        billField.becomeFirstResponder()
         setTipPercentages()
         setValues()
         print("view did appear")
