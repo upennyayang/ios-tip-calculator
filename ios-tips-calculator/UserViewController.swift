@@ -17,7 +17,8 @@ class UserViewController: UIViewController {
     func setTipPercentages() -> Void {
         let percentages : [Double] = getPercentages()
         for percentage in percentages {
-            tipControl.setTitle("\(percentage)", forSegmentAtIndex: percentages.indexOf(percentage)!)
+            let value = NSInteger(percentage)
+            tipControl.setTitle("\(value)%", forSegmentAtIndex: percentages.indexOf(percentage)!)
         }
     }
     
@@ -32,9 +33,9 @@ class UserViewController: UIViewController {
     func getPercentages() -> [Double] {
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        let percentage0 =  defaults.doubleForKey("percentage0") / 100
-        let percentage1 =  defaults.doubleForKey("percentage1") / 100
-        let percentage2 =  defaults.doubleForKey("percentage2") / 100
+        let percentage0 =  defaults.doubleForKey("percentage0")
+        let percentage1 =  defaults.doubleForKey("percentage1")
+        let percentage2 =  defaults.doubleForKey("percentage2")
         return [percentage0, percentage1, percentage2]
     }
     

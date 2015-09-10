@@ -29,21 +29,25 @@ class ViewController: UIViewController {
     func getPercentages() -> [Double] {
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        let percentage0 =  defaults.doubleForKey("percentage0") / 100
-        let percentage1 =  defaults.doubleForKey("percentage1") / 100
-        let percentage2 =  defaults.doubleForKey("percentage2") / 100
+        let percentage0 =  defaults.doubleForKey("percentage0")
+        let percentage1 =  defaults.doubleForKey("percentage1")
+        let percentage2 =  defaults.doubleForKey("percentage2")
         return [percentage0, percentage1, percentage2]
     }
     
-    @IBAction func onEditingChanged(sender: AnyObject) {
+    func setValues() -> Void {
         let percentages:[Double] = getPercentages()
         let billAmount = NSString(string: billField.text!).doubleValue
         let percentage = percentages[tipControl.selectedSegmentIndex]
-        let tip = billAmount * percentage
+        let tip = billAmount * percentage / 100
         let total = billAmount + tip
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+    }
+    
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        setValues()
     }
 
 
@@ -59,6 +63,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         setTipPercentages()
+        setValues()
         print("view did appear")
     }
     
@@ -67,12 +72,11 @@ class ViewController: UIViewController {
         print("view will disappear")
     }
     
-   
-    
     func setTipPercentages() -> Void {
         let percentages : [Double] = getPercentages()
         for percentage in percentages {
-            tipControl.setTitle("\(percentage)", forSegmentAtIndex: percentages.indexOf(percentage)!)
+            let value = NSInteger(percentage)
+            tipControl.setTitle("\(value)%", forSegmentAtIndex: percentages.indexOf(percentage)!)
         }
     }
     
